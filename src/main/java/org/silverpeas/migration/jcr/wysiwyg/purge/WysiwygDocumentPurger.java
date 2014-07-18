@@ -97,18 +97,18 @@ class WysiwygDocumentPurger implements Callable<WysiwygDocumentPurger.Result> {
   }
 
   private Result purgeWysiwyg() {
-    String commonLogPart = "instanceId=" + componentId;
+    final String headerLogPart = "instanceId=" + componentId;
     Result result = new Result();
 
     long startIdentification = System.currentTimeMillis();
     List<String> foreignIdsWithWysiwyg = service.listForeignIdsWithWysiwyg(componentId);
     console.printMessage(
-        commonLogPart + " - identifying foreign ids (" + foreignIdsWithWysiwyg.size() + ") in " +
+        headerLogPart + " - identifying foreign ids (" + foreignIdsWithWysiwyg.size() + ") in " +
             DurationFormatUtils
                 .formatDurationHMS(System.currentTimeMillis() - startIdentification));
 
     for (String foreignIdWithWysiwyg : foreignIdsWithWysiwyg) {
-      commonLogPart += ", foreignId=" + foreignIdWithWysiwyg;
+      String commonLogPart = headerLogPart + ", foreignId=" + foreignIdWithWysiwyg;
       console.printMessage(commonLogPart + " - verifying wysiwyg contents ...");
 
       // Getting documents ordered by their names

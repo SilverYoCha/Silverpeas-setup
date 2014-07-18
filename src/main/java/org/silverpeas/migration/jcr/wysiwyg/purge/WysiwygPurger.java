@@ -53,7 +53,6 @@ public class WysiwygPurger extends DbBuilderDynamicPart {
 
   /**
    * The default constructor.
-   * A thread pool of 10 threads is handled.
    */
   public WysiwygPurger() {
     executor = Executors.newFixedThreadPool(10);
